@@ -1,0 +1,64 @@
+{
+    "mode": "sr",
+    "use_cl": false,
+    "gpu_ids": [0],
+
+    "scale": 4,
+    "degradation": "BI",
+    "is_train": false,
+    "use_chop": true,
+    "rgb_range": 255,
+    "self_ensemble": true,
+    "LR_size": 80,
+
+    "datasets": {
+        "test_set1": {
+            "mode": "LRHR",
+            "dataroot_HR": "../Data/TestBenchmark/HR/Set5/x4",
+            "dataroot_LR": "../Data/TestBenchmark/LR/LRBI/Set5/x4",
+            "data_type": "img"
+        },
+        "test_set2": {
+            "mode": "LRHR",
+            "dataroot_HR": "../Data/TestBenchmark/HR/Set14/x4",
+            "dataroot_LR": "../Data/TestBenchmark/LR/LRBI/Set14/x4",
+            "data_type": "img"
+        },
+        "test_set3": {
+            "mode": "LRHR",
+            "dataroot_HR": "../Data/TestBenchmark/HR/Manga109/x4",
+            "dataroot_LR": "../Data/TestBenchmark/LR/LRBI/Manga109/x4",
+            "data_type": "img"
+        },
+        "test_set4": {
+            "mode": "LRHR",
+            "dataroot_HR": "../Data/TestBenchmark/HR/Urban100/x4",
+            "dataroot_LR": "../Data/TestBenchmark/LR/LRBI/Urban100/x4",
+            "data_type": "img"
+        },
+        "test_set5": {
+            "mode": "LRHR",
+            "dataroot_HR": "../Data/TestBenchmark/HR/BSDS100/x4",
+            "dataroot_LR": "../Data/TestBenchmark/LR/LRBI/BSDS100/x4",
+            "data_type": "img"
+        }
+    },
+
+    "networks": {
+        "which_model": "DTM",
+        "windows_size": [8,5],
+        "windows_kernel": [3,6],
+        "windows_stride": 1,
+        "num_features": 48,
+        "in_channels": 3,
+        "out_channels": 3,
+        "num_head": [4,4],
+        "drop_path": 0.0,
+        "upscale_factor": 4
+    },
+
+    "solver": {
+        "offset": 1,
+        "pretrained_path": "./experiments/best_ckp.pth"
+    }
+}

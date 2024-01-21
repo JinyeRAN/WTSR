@@ -1,0 +1,66 @@
+{
+    "mode": "sr",
+    "use_cl": false,
+    "gpu_ids": [0],
+
+    "scale": 4,
+    "is_train": true,
+    "use_chop": true,
+    "rgb_range": 255,
+    "self_ensemble": false,
+    "save_image": false,
+    "LR_size": 80,
+
+    "datasets": {
+        "train": {
+            "mode": "LRHR",
+            "dataroot_HR": "/media/pselab/RTT/UDA_Y/gratuation/Data/real_scence/train/HR",
+            "dataroot_LR": "/media/pselab/RTT/UDA_Y/gratuation/Data/real_scence/train/LRM",
+            "data_type": "npy",
+            "n_workers": 8,
+            "batch_size": 64,
+            "LR_size": 80,
+            "use_flip": true,
+            "use_rot": true,
+            "noise": "."
+        },
+        "val": {
+            "mode": "LRHR",
+            "dataroot_HR": "/media/pselab/RTT/UDA_Y/gratuation/Data/real_scence/val/HR",
+            "dataroot_LR": "/media/pselab/RTT/UDA_Y/gratuation/Data/real_scence/val/LRM",
+            "data_type": "img"
+        }
+    },
+
+    "networks": {
+        "which_model": "DTM",
+        "windows_size": [8,5],
+        "windows_kernel": [3,6],
+        "windows_stride": 1,
+        "num_features": 48,
+        "in_channels": 3,
+        "out_channels": 3,
+        "num_head": [4,4],
+        "upscale_factor": 4
+    },
+
+    "solver": {
+        "offset": 1,
+        "type": "ADAM",
+        "learning_rate": 0.004,
+        "weight_decay": 0,
+        "lr_scheme": "warmmulti",
+        "lr_steps": [100, 200, 300, 400],
+        "lr_gamma": 0.5,
+        "loss_type": "l1",
+        "manual_seed": 0,
+        "num_epochs": 500,
+        "skip_threshold": 3,
+        "split_batch": 1,
+        "save_ckp_step": 50,
+        "save_vis_step": 1,
+        "pretrain": false,
+        "pretrained_path": "./experiments/DTM_in3f48_x4/epochs/last_ckp.pth",
+        "cl_weights": [1.0, 1.0, 1.0, 1.0]
+    }
+}
